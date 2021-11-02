@@ -14,18 +14,17 @@ import { ColorSchemeName, Pressable } from 'react-native';
 import {View} from 'react-native';//Same as previous 
 import {
   Octicons,
-  MaterialCommunityIcons
+  MaterialCommunityIcons,
+  MaterialIcons,
+  FontAwesome5,
 } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import MainTabNavigator from './MainTabNavigator';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -73,15 +72,29 @@ function RootNavigator() {
           )
         }}
         />
+      <Stack.Screen 
+        name="ChatRoom" 
+        component={ChatRoomScreen} 
+        options={({ route }) => ({ 
+          title: route.params.name,
+          headerRight: () => (
+            <View style={{
+              flexDirection: 'row',
+              width: 100,
+              justifyContent: 'space-between',
+              marginRight: 10,
+            }}>
+              <FontAwesome5 name="video" size={22} color={'white'} />
+              <MaterialIcons name="call" size={22} color={'white'} />
+              <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'} />
+            </View>
+          )
+        })}
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
 }
-
-
-
-
-
 
 
 
