@@ -23,9 +23,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  status: {
+  lastMessage: {
     fontSize: 16,
     color: 'grey',
+  },
+  time: {
+    fontSize: 14,
+    color: 'grey'
   },
 });
 

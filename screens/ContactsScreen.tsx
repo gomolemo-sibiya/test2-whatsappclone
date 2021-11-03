@@ -2,9 +2,7 @@ import * as React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import { View } from '../components/Themed';
 import ContactListItem from '../components/ContactListItem';
-
 import users from '../data/Users';
-import NewMessageButton from '../components/NewMessageButton';
 
 export default function ContactsScreen() {
 

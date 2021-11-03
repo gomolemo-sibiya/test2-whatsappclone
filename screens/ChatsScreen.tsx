@@ -5,7 +5,7 @@ import ChatListItem from '../components/ChatListItem';
 // import { RootTabScreenProps } from '../types';
 
 import chatRooms from '../data/ChatRooms';
-import NewMessageButton from '../components/NewMessageButton/Index';
+import NewMessageButton from '../components/NewMessageButton/index';
 
 export default function ChatsScreen(/*{ navigation }: RootTabScreenProps<'TabOne'>*/) {
   return (
