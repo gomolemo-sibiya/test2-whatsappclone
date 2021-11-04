@@ -7,9 +7,9 @@ import {
 } from "react-native";
 import { ChatRoom } from "../../types";
 import styles from "./styles";
-
 import moment from "moment";//https://momentjs.com/docs/...scroll down to difference
 import { useNavigation } from '@react-navigation/core';
+
 export type ChatListItemProps ={
     chatRoom: ChatRoom;
 }
