@@ -1,13 +1,43 @@
 import * as React from 'react';
+import {useEffect, useState} from "react";
 import { FlatList, StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import ChatListItem from '../components/ChatListItem';
 // import { RootTabScreenProps } from '../types';
+import {
+  API,
+  graphqlOperation,
+  Auth,
+} from 'aws-amplify';
 
 import chatRooms from '../data/ChatRooms';
 import NewMessageButton from '../components/NewMessageButton/index';
+import { getUser } from './queries';
 
 export default function ChatsScreen(/*{ navigation }: RootTabScreenProps<'TabOne'>*/) {
+  const [chatRooms, setChatRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchChatRooms = async () => {
+      try {
+        const userInfo = await Auth.currentAuthenticatedUser();
+
+        const userData = await API.graphql(
+          graphqlOperation(
+            getUser, {
+              id: userInfo.attributes.sub,
+            }
+          )
+        )
+
+        setChatRooms(userData.data.getUser.chatRoomUser.items)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchChatRooms();
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList 
